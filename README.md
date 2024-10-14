@@ -6,8 +6,16 @@ Este proyecto realiza un análisis de los datos históricos de la ejecución de 
 ## 🗂️ Estructura del Proyecto
 
 ```
-├── data/ # Datos crudos y procesados ├── notebooks/ # Notebooks de Jupyter con el análisis ├── src/ # Scripts de procesamiento y modelado ├── results/ # Gráficos y archivos de resultados ├── README.md # Descripción del proyecto
+├── README.md                   # Descripción del proyecto
+├── .gitignore                  # gitignore
+├── data/                       # Datos crudos y procesados
+├── notebook/                   # Notebooks de Jupyter con el análisis
+│   ├── merger.ipynb             
+│   ├── cleanse.ipynb          
+│   ├── eda.ipynb 
+│   ├── visuals.ipynb     
 ```
+
 
 ## 🛠️ Instalación y Requisitos
 Este proyecto utiliza Python 3.8 y requiere las siguientes bibliotecas:
@@ -53,7 +61,7 @@ Este proyecto utiliza Python 3.8 y requiere las siguientes bibliotecas:
 
 6. **Consistencia en Categorías Económicas**: Se exploraron las categorías económicas, identificando variaciones en las subcategorías. Se definió una nueva columna para las subcategorías agrupando datos relevantes.
 
-7. **Guardado de Datos Limpiados**: Se guardó el dataframe limpio en un nuevo archivo CSV (`df_clean.csv`) para su análisis posterior.
+7. **Guardado de Datos Limpios**: Se guardó el dataframe limpio en un nuevo archivo CSV (`df_clean.csv`) para su análisis posterior.
 
 
 ## Análisis Exploratorio de Datos (EDA)
@@ -69,29 +77,38 @@ Este proyecto utiliza Python 3.8 y requiere las siguientes bibliotecas:
 5. **Identificación de Discrepancias**: Se analizaron las diferencias entre estimaciones y realizaciones por cuerpo superior, utilizando media y mediana para obtener una visión más completa. El Ministerio de Economía mostró consistentemente mayores diferencias, sugiriendo la necesidad de mejorar las predicciones de ingresos.
 
 
-### Fase 4: Visualización de Datos
-1. **Gráficos de Barras y Líneas:**
-   - Comparar ingresos previstos, lanzados y realizados para cada categoría.
+## Visualización
 
-2. **Diagramas de Caja:**
-   - Evaluar la dispersión de las diferencias entre los valores previstos y realizados.
+1. **Gráficas por Categoría y Subcategoría**: Se generaron gráficos de barras para visualizar los valores estimados, lanzados y realizados, agrupados por **economy_category** y **economy_subcategory**. Esto permite identificar qué categorías tienen las mejores estimaciones, destacando que las **Receitas Correntes** muestran mayor consistencia entre lo estimado y lo realizado.
 
-### Fase 5: Conclusiones y Recomendaciones
-1. **Resumen de Hallazgos:**
-   - Identificar las categorías y períodos con mayor discrepancia.
+2. **Evolución Temporal**: Se elaboraron gráficos de líneas para observar la evolución de los ingresos a lo largo de los años fiscales, comparando los valores estimados y realizados. Se notó que el valor estimado suele ser superior al realizado, a excepción de ciertos años como 2016, coincidiendo con eventos económicos significativos en Brasil.
 
-2. **Propuestas de Mejora:**
-   - Sugerir acciones para mejorar la planificación y ejecución de los ingresos.
+3. **Diagramas de Cajas**: Se utilizaron diagramas de cajas para evaluar la dispersión de las diferencias porcentuales entre los valores estimados y realizados por categoría. Los ingresos de capital presentaron menor dispersión, mientras que dentro de las **Receitas Correntes**, las intergubernamentales mostraron la menor variación.
 
-## 📊 Resultados y Conclusiones
-- Se identificaron desviaciones significativas entre los valores previstos y los valores realizados en varias categorías económicas.
-- Se observó un aumento estacional en los ingresos realizados, especialmente en diciembre.
-- Las unidades gestoras que mostraron consistentemente baja ejecución pueden necesitar un análisis más profundo para identificar ineficiencias.
+
+## Conclusiones
+
+### Resumen de Hallazgos
+
+1. **Discrepancias en Ingresos**: Se identificó que las **Receitas de Capital** presentan las mayores discrepancias entre los ingresos estimados y realizados. En particular, algunos años, como 2016, mostraron diferencias significativas que requieren atención.
+
+2. **Tendencias de Ejecución**: A lo largo del período analizado, se observó un crecimiento en los ingresos hasta 2016, seguido de una caída en 2017. Este descenso puede estar asociado a factores como la recesión económica y eventos políticos, afectando la recaudación.
+
+3. **Aumento de ingresos fin de año**: Durante los años se ha observado una tendencia de aumento en los ingresos de todas las categorías económicas en el mes de diciembre, posiblemente debido a un cierre del año fiscal.
+
+### Propuestas de Mejora
+
+1. **Fortalecer el Proceso de Estimación**: Implementar metodologías más robustas y basadas en datos históricos para mejorar la precisión en la estimación de ingresos, especialmente para las **Receitas de Capital**.
+
+2. **Análisis de Datos Atípicos**: Realizar una limpieza exhaustiva de datos y un análisis de valores atípicos para asegurar que las proyecciones se basen en información precisa y representativa. Crear una diferenciación entre datos nulos y 0 en los valores, ya que podrían significar diferentes cosas dependiendo del contexto en el que se encuentren registrados.
+
+3. **Mejoras en el Registro de Datos**: Implantar un sistema de registros donde los datos se completen de forma correcta, de tal modo que las discrepancias y los valores atípicos se puedan reducir en gran medida, lo cual mejoraría y ampliaría las posibilidades a la hora de realizar un análisis económico del país.
+
 
 ## 🔄 Próximos Pasos
-- Refinar el análisis para incluir factores externos que puedan afectar la recaudación.
-- Implementar un modelo predictivo para estimar mejor los ingresos futuros.
-- Explorar la relación entre la ejecución de ingresos y variables económicas, como la inflación y el crecimiento del PIB.
+- Iincluir un análisis de los valores atípicos encontrados en todas las categorías, de tal manera que las inferencias puedan ser más precisas, sin la dependencia de estas sobre el significado de valores inciertos.
+- Exploración histórica para comprender las tendencias anuales (y/o mensuales) y las fluctuaciones en los ingresos.
+
 
 ## 🤝 Contribuciones
 Las contribuciones son bienvenidas. Si deseas mejorar el proyecto, por favor abre un pull request o una issue.
