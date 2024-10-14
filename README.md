@@ -18,15 +18,18 @@ Este proyecto realiza un análisis de los datos históricos de la ejecución de 
 
 
 ## 🛠️ Instalación y Requisitos
-Este proyecto utiliza Python 3.8 y requiere las siguientes bibliotecas:
+Este proyecto utiliza Python 3.11 y requiere las siguientes bibliotecas:
 
 - pandas
 - numpy
 - matplotlib
 - seaborn
-- scikit-learn
+- os
+  
+Además, en el caso de desear ejecutar, hacerse en orden: merger -> cleanse -> eda -> visuals, de tal forma de que los csv se puedan generar correctamente.
 
-## 📝 Instrucciones Detalladas
+
+## 📝 Fases del proyecto
 
 ## Lectura y Exploración Inicial
 
@@ -47,7 +50,7 @@ Este proyecto utiliza Python 3.8 y requiere las siguientes bibliotecas:
 8. **Guardado de Datos**: Se guardó el dataframe final en un nuevo archivo CSV (`df_merged.csv`).
 
 
-## 2. Limpieza
+## Limpieza
 
 1. **Carga de Datos**: Se cargó el dataframe consolidado (`df_merged.csv`) que contiene los ingresos públicos de Brasil.
 
@@ -68,7 +71,7 @@ Este proyecto utiliza Python 3.8 y requiere las siguientes bibliotecas:
 
 1. **Distribución de Ingresos por Categoría Económica**: Se agruparon los ingresos por **economy_category** y **economy_subcategory**, sumando los valores realizados y calculando su porcentaje del total. Los ingresos corrientes son ligeramente superiores a los de capital, con predominancia de ingresos no intergubernamentales.
 
-2. **Cálculo de Diferencias**: Se creó una nueva columna para calcular la diferencia promedio entre ingresos estimados y realizados. Se identificaron casos donde el valor estimado era 0, lo que generó diferencias negativas. Aproximadamente el **{df_noest.shape[0]/df.shape[0]*100:.2f}%** de los casos no tenía estimaciones previas, indicando posibles ingresos no planificados o errores en el registro.
+2. **Cálculo de Diferencias**: Se creó una nueva columna para calcular la diferencia promedio entre ingresos estimados y realizados. Se identificaron casos donde el valor estimado era 0, lo que generó diferencias negativas. Aproximadamente el 92.5% de los casos no tenía estimaciones previas, indicando posibles ingresos no planificados o errores en el registro.
 
 3. **Análisis Temporal Anual**: Se sumaron los ingresos realizados por año, observando un crecimiento hasta 2016, seguido de un descenso en 2017, posiblemente debido a corrupción y huelgas en Brasil.
 
@@ -106,7 +109,7 @@ Este proyecto utiliza Python 3.8 y requiere las siguientes bibliotecas:
 
 
 ## 🔄 Próximos Pasos
-- Iincluir un análisis de los valores atípicos encontrados en todas las categorías, de tal manera que las inferencias puedan ser más precisas, sin la dependencia de estas sobre el significado de valores inciertos.
+- Incluir un análisis de los valores atípicos encontrados en todas las categorías, de tal manera que las inferencias puedan ser más precisas, sin la dependencia de estas sobre el significado de valores inciertos.
 - Exploración histórica para comprender las tendencias anuales (y/o mensuales) y las fluctuaciones en los ingresos.
 
 
