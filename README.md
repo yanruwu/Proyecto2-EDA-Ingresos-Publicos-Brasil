@@ -6,27 +6,30 @@ Este proyecto realiza un análisis de los datos históricos de la ejecución de 
 ## 🗂️ Estructura del Proyecto
 
 ```
-├── README.md                   # Descripción del proyecto
-├── .gitignore                  # gitignore
-├── data/                       # Datos crudos y procesados
-├── notebook/                   # Notebooks de Jupyter con el análisis
-│   ├── merger.ipynb             
-│   ├── cleanse.ipynb          
-│   ├── eda.ipynb 
-│   ├── visuals.ipynb     
+├── README.md                # Descripción del proyecto
+├── .gitignore               # gitignore
+├── data/                    # Datos crudos y procesados
+├── notebook/                # Notebooks de Jupyter con el análisis
+│   ├── 1-merger.ipynb             
+│   ├── 2-cleanse.ipynb          
+│   ├── 3-eda.ipynb 
+│   ├── 4-visuals.ipynb
+├── src/                     # Carpeta de soporte con funciones
+├── ├── func.py              # Archivo .py con las funciones empleadas
+├── img/                     # Carpeta de imágenes de gráficas
 ```
 
 
 ## 🛠️ Instalación y Requisitos
 Este proyecto utiliza Python 3.11 y requiere las siguientes bibliotecas:
 
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- os
+- <a href="https://pandas.pydata.org/docs/">pandas</a>
+- <a href="https://numpy.org/doc/">numpy</a>
+- <a href="https://matplotlib.org/stable/index.html">matplotlib</a>
+- <a href="https://seaborn.pydata.org/">seaborn</a>
+- <a href="https://docs.python.org/3/library/os.html">os</a>
   
-Además, en el caso de desear ejecutar, hacerse en orden: merger -> cleanse -> eda -> visuals, de tal forma de que los csv se puedan generar correctamente.
+Además, en el caso de desear ejecutar, hacerse en orden, de tal forma de que los csv se puedan generar correctamente.
 
 
 ## 📝 Fases del proyecto
@@ -91,13 +94,36 @@ Además, en el caso de desear ejecutar, hacerse en orden: merger -> cleanse -> e
 
 ## Conclusiones
 
-### Resumen de Hallazgos
+A lo largo de este análisis exploratorio de datos (EDA), se han identificado diversos patrones y áreas problemáticas en la ejecución de ingresos públicos en Brasil, lo que permite hacer recomendaciones importantes para mejorar la precisión de las previsiones y la eficiencia en la recaudación.
 
-1. **Discrepancias en Ingresos**: Se identificó que las **Receitas de Capital** presentan las mayores discrepancias entre los ingresos estimados y realizados. En particular, algunos años, como 2016, mostraron diferencias significativas que requieren atención.
+### 1. **Inconsistencias entre ingresos estimados y realizados**
+Se observó que hay diferencias significativas entre las estimaciones de ingresos y los valores realmente recaudados, lo que indica áreas problemáticas en las previsiones de ingresos. Esta situación fue recurrente para ciertos ministerios y secretarías, siendo notablemente consistente en el **Ministerio de Economía**. Esto sugiere que este ministerio podría beneficiarse de una revisión de los modelos de previsión.
 
-2. **Tendencias de Ejecución**: A lo largo del período analizado, se observó un crecimiento en los ingresos hasta 2016, seguido de una caída en 2017. Este descenso puede estar asociado a factores como la recesión económica y eventos políticos, afectando la recaudación.
 
-3. **Aumento de ingresos fin de año**: Durante los años se ha observado una tendencia de aumento en los ingresos de todas las categorías económicas en el mes de diciembre, posiblemente debido a un cierre del año fiscal.
+### 2. **Tendencias a lo largo del tiempo**
+A nivel temporal, se aprecian fluctuaciones importantes en los ingresos anuales entre 2013 y 2021. El análisis mostró un crecimiento irregular de los ingresos en ciertos años, con caídas pronunciadas durante eventos críticos como las crisis económicas, en 2017.
+
+![Evolución de ingresos anuales](img\anual_ev.png)
+
+Adicionalmente, se ha observado una clara tendencia de aumento de los ingresos en diciembre, indicando que al cierre del año fiscal se recauda más.
+
+![Evolución de ingresos mensuales](img\monthly_ev.png)
+
+### 3. **Efectos de los valores atípicos en el análisis**
+Se decidió trabajar tanto con la **mediana** como con la **media** para identificar los cuerpos con mayores diferencias entre las estimaciones y los ingresos realizados. Este enfoque permitió captar distintas perspectivas: mientras que la mediana minimiza el impacto de valores atípicos, la media proporciona una visión global. En ambos casos, las mayores diferencias se observaron en organismos como el **Ministerio de Economía** y el **Ministerio de la Cidadanía**.
+
+
+### 4. **Distribución por categorías de ingresos**
+Los ingresos fueron clasificados en diversas categorías, con las **receitas de capital** y las **receitas corrientes** siendo las más significativas. Sin embargo, la ejecución de las receitas de capital presenta mayores variaciones entre lo estimado y lo realizado. Esto indica que este tipo de ingresos es más volátil y requiere una mejor planificación.
+
+![Diferencias en ingresos](img\value-diffs.png)
+
+### 5. **Dispersión de los datos**
+Finalmente se observó una gran dispersión general en los datos registrados de los ingresos. Concretamente, en los ingresos de capital la mayor parte de los datos la constituyen valores atípicos. Esto indica un problema con la recolección de datos u otros factores externos los cuales podrían estar afectando a su recolección.
+
+
+![Boxplot con outliers de los ingresos por categoría](img\boxplot.png)
+
 
 ### Propuestas de Mejora
 
